@@ -1,0 +1,17 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8080/eureka/
+server:
+  port: 8089
+spring:
+  application:
+    name: zp-zuul
+zuul:
+  routes:
+    api-a:
+      path: /api-a/**
+      serviceId: zp-feign
+    api-b:
+      path: /api-b/**
+      serviceId: zp-feign2

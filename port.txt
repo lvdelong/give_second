@@ -1,0 +1,11 @@
+eureka:8080
+
+zp_provider: 8081 - 8084
+
+zp_feign: 8085 - 8088
+
+zp_zuul: 8089
+
+config_server : 8888
+
+config_client : 8881
