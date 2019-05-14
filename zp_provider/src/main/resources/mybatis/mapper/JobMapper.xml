@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zp.mapper.job.JobMapper">
+
+    <select id="jobListPagination" resultType="com.zp.model.Job">
+       select * from t_job
+    </select>
+
+    <delete id="delJob" parameterType="string">
+        delete from t_job where id = #{id}
+    </delete>
+
+</mapper>

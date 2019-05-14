@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zp.mapper.TcMapper">
+
+    <!--&lt;!&ndash;总条数&ndash;&gt;
+    <select id="findTaoCanCount" resultType="int">
+        select count(*) from t_taocan
+    </select>-->
+    <!--分页查询-->
+    <select id="findTaoCan" resultType="com.zp.model.TaoCan">
+        select t.tcname,t.gsname,t.ygname,t.starttime,t.endtime from t_taocan t
+    </select>
+
+    <!--新增套餐-->
+    <insert id="saveTaoCan" parameterType="com.zp.model.TaoCan">
+        insert into t_taocan (tcname,gsname,ygname,starttime,endtime)
+         values (#{tcname},#{gsname},#{ygname},#{starttime},#{endtime})
+    </insert>
+
+
+    <!--批删-->
+    <delete id="deleteTaoCan" parameterType="int">
+        delete from t_taocan where id in
+        <foreach collection="ids" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </delete>
+
+    <!--回显商户-->
+    <select id="findTaoCanById" parameterType="int" resultType="com.zp.model.TaoCan">
+         select t.tcname,t.gsname,t.ygname,t.starttime,t.endtime from t_taocan t
+          where t.id=#{id}
+    </select>
+
+    <!--修改商户-->
+    <update id="updateTaoCan" >
+    update t_taocan t set t.tcname=#{name},t.gsname=#{gsname},
+        t.ygname=#{ygname},t.starttimme=#{starttimme},t.endtime=#{endtime},
+    </update>
+</mapper>

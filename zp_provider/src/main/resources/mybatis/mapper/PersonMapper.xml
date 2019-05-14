@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zp.mapper.person.PersonMapper">
+    <!--首页分页查询-->
+    <select id="findPersonCount" parameterType="com.zp.model.person.PersonBean" resultType="int" >
+        select count(*) from zp_person z where 1=1
+        <include refid="personWhere"></include>
+    </select>
+    <select id="findPerson" resultType="com.zp.model.person.PersonBean">
+        select * from zp_person z where 1=1
+        <include refid="personWhere"></include>
+        limit #{start},#{rows}
+    </select>
+    <!--删除购物车内容-->
+    <delete id="delOne" parameterType="int">
+        delete from zp_person  where id =#{id}
+    </delete>
+
+    <!--批量删除-->
+    <delete id="deleteMany">
+        delete from zp_person where id in
+        <foreach collection="ids" separator="," open="(" close=")" item="item">
+            #{item}
+        </foreach>
+    </delete>
+    <select id="queryPerson" resultType="com.zp.model.person.PersonBean">
+        select * from zp_person z
+    </select>
+    <sql id="personWhere">
+        <if test="personBean.approvalStatus !=null and personBean.approvalStatus !=''">
+            and z.approvalStatus = #{personBean.approvalStatus}
+        </if>
+        <if test="personBean.resumeIntegrity !=null and personBean.resumeIntegrity !=''">
+            and z.resumeIntegrity = #{personBean.resumeIntegrity}
+        </if>
+        <if test="personBean.createTime !=null and personBean.createTime !=''">
+            and z.resumeIntegrity = #{personBean.resumeIntegrity}
+        </if>
+        <if test="personBean.refreshTime !=null and personBean.refreshTime !=''">
+            and z.refreshTime = #{personBean.refreshTime}
+        </if>
+    </sql>
+</mapper>
