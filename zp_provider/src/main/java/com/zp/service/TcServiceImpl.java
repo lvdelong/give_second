@@ -40,6 +40,7 @@ public class TcServiceImpl implements TcService{
     }
 
     @Override
+    @ResponseBody
     public void saveTaoCan(TaoCan taoCan) {
         tcMapper.saveTaoCan(taoCan);
     }
