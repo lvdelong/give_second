@@ -10,11 +10,9 @@
  */
 package com.zp.controller.job;
 
-import com.zp.service.ServiceHi;
 import com.zp.service.job.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,9 +36,9 @@ public class JobController {
     @Autowired
     private JobService jobService;
 
-    @RequestMapping("/findPage")
-    public List findPage() {
-        return jobService.findPage();
+    @RequestMapping("findPagel")
+    public List findPagel() {
+        return jobService.findPagel();
     }
 
     @RequestMapping("delJob")

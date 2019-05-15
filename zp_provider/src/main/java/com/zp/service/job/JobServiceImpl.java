@@ -14,8 +14,6 @@ import com.zp.mapper.job.JobMapper;
 import com.zp.model.Job;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -36,7 +34,7 @@ public class JobServiceImpl implements JobServiceApi{
 
     @Override
     @ResponseBody
-    public List findPage() {
+    public List findPagel() {
         List<Job> jobList = jobMapper.jobListPagination();
         return jobList;
     }

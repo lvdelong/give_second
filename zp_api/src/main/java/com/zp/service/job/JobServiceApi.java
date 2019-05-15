@@ -28,7 +28,7 @@ public interface JobServiceApi {
 
     @RequestMapping("/findPage")
     @ResponseBody
-    public List findPage();
+    public List findPagel();
 
     @RequestMapping("/delJob")
     @ResponseBody
