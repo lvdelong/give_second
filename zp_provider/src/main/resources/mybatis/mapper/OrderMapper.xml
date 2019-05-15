@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zp.mapper.business.order.OrderMapper">
+
+    <!--查询-->
+    <select id="findOrderList" resultType="com.zp.model.OrderBean">
+        select t.id,t.orderPrice,t.firmName,t.orderInfo,t.orderNumber,t.applyVip,t.applyTime,t.payTheBill from t_order t where 1=1
+    </select>
+
+    <!--删除-->
+    <delete id="deleteOrder" parameterType="string" >
+        delete from t_order  where id=#{value}
+    </delete>
+
+</mapper>
