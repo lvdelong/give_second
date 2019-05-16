@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zp.mapper.business.order.OrderMapper">
+
+    <!--查询-->
+    <select id="findOrderList" resultType="com.zp.model.OrderBean"  >
+        select rt.orderType,t.id,t.orderPrice,t.firmName,t.orderInfo,t.orderNumber,t.applyVip,date_format(t.applyTime, '%Y-%m-%d') as applyTime,tp.payTheBill,ts.status from t_order t
+          left join t_orderpayType tp on tp.id=t.payTheBill
+            left join t_orderstatus ts on ts.id=t.status
+              left join t_orderType rt on rt.id=t.orderType
+                left join t_vipOrderrel tvr on tvr.orderId=t.id
+                  left join t_orderVipName tv on tv.id=tvr.orderVipId
+        <include refid="orderWhere"></include>
+    </select>
+
+    <!--取消订单-->
+    <delete id="deleteOrder" parameterType="string" >
+        delete from t_order  where id in
+        <foreach collection="ids" separator="," open="(" close=")" item="item">
+            #{item}
+        </foreach>
+    </delete>
+
+    <!--条件查询-->
+    <sql id="orderWhere">
+        <where>
+        /*公司，订单号，会员名字查询*/
+            <if test="searchSelect==1 and searchxq!='' and searchxq !='-1' ">
+                and t.firmName like  '%${searchxq}%'
+            </if>
+            <if test="searchSelect==3 and searchxq!='' and searchxq !='-1' ">
+                and t.orderNumber like  '%${searchxq}%'
+            </if>
+            <if test="searchSelect==2 and searchxq!='' and searchxq !='-1' ">
+                and tv.orderVipName like  '%${searchxq}%'
+            </if>
+            /*订单类别查询*/
+            <if test="orderBean.orderType!=null and orderBean.orderType!='' and orderBean.orderType!=0">
+                and t.orderType=#{orderBean.orderType}
+            </if>
+            /*支付方式查询*/
+            <if test="orderBean.payTheBill!=null and orderBean.payTheBill!='' and orderBean.payTheBill!=0">
+                and t.payTheBill=#{orderBean.payTheBill}
+            </if>
+            <if test="orderBean.status!=null and orderBean.status!='' and orderBean.status!=0">
+                and t.status=#{orderBean.status}
+            </if>
+
+            /*订单时间查询*/
+            <if test="orderBean.applyTime!=null and orderBean.applyTime!='' and orderBean.applyTime!=0">
+                and SYSDATE()>= date_sub(t.applyTime, interval #{orderBean.applyTime} day)
+            </if>
+        </where>
+    </sql>
+</mapper>
