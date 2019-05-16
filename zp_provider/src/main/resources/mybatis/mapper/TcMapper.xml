@@ -2,13 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.zp.mapper.TcMapper">
 
-    <!--&lt;!&ndash;总条数&ndash;&gt;
-    <select id="findTaoCanCount" resultType="int">
+    <!--总条数-->
+    <!--<select id="findTaoCanCount" resultType="int">
         select count(*) from t_taocan
     </select>-->
     <!--分页查询-->
     <select id="findTaoCan" resultType="com.zp.model.TaoCan">
-        select t.tcname,t.gsname,t.ygname,t.starttime,t.endtime from t_taocan t
+        select t.id,t.tcname,t.gsname,t.ygname,t.starttime,t.endtime from t_taocan t
     </select>
 
     <!--新增套餐-->
@@ -20,10 +20,7 @@
 
     <!--批删-->
     <delete id="deleteTaoCan" parameterType="int">
-        delete from t_taocan where id in
-        <foreach collection="ids" item="item" open="(" close=")" separator=",">
-            #{item}
-        </foreach>
+        delete from t_taocan where id = #{id}
     </delete>
 
     <!--回显商户-->
@@ -37,4 +34,39 @@
     update t_taocan t set t.tcname=#{name},t.gsname=#{gsname},
         t.ygname=#{ygname},t.starttimme=#{starttimme},t.endtime=#{endtime},
     </update>
+
+
+    <!--系................统.............分...................类-->
+    <!--添加分类-->
+   <!-- <insert id="addSystem" parameterType="com.zp.model.systematics.Systematics">
+        insert into t_systematics (ssfenlei,flname,bmname,paiming)
+         values (#{ssfenlei},#{flname},#{bmname},#{paiming})
+    </insert>-->
+
+    <!--页................面.............管...................理-->
+    <!--分页查询-->
+    <select id="findYeMian" resultType="com.zp.model.yemianguanli.YeMian">
+        select y.id,y.pname,y.alias,y.type,y.url,y.caching from t_yemian y
+    </select>
+
+    <!--新增套餐-->
+    <insert id="addYeMian" parameterType="com.zp.model.yemianguanli.YeMian">
+        insert into t_yemian (pname,alias,type,url,caching)
+         values (#{pname},#{alias},#{type},#{url},#{caching})
+    </insert>
+
+    <!--批删-->
+    <delete id="deleteYeMian" parameterType="int">
+        delete from t_yemian where id =#{id}
+    </delete>
+
+    <!--分页查询-->
+    <select id="findjingtai" resultType="com.zp.model.yemianguanli.JingTai">
+        select j.id,j.jname,j.bnumber,j.createtime,j.author from t_jingtai j
+    </select>
+
+    <!--批删-->
+    <delete id="deleteOne" parameterType="int">
+        delete from t_jingtai where id = #{id}
+    </delete>
 </mapper>

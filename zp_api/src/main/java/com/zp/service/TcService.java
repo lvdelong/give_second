@@ -12,8 +12,11 @@ package com.zp.service;
 
 
 import com.zp.model.TaoCan;
+import com.zp.model.yemianguanli.JingTai;
+import com.zp.model.yemianguanli.YeMian;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -37,9 +40,45 @@ public interface TcService {
     //删除 模板
     @DeleteMapping("deleteTaoCan")
     @ResponseBody
-    void deleteTaoCan(@RequestParam("ids") Integer[] ids);
+    void deleteTaoCan(@RequestParam("id") Integer id);
 
     @GetMapping("findTaoCanById")
     @ResponseBody
     TaoCan findTaoCanById(@RequestParam("id") Integer id);
+
+
+
+
+    /*-----------------------------------------------------------------------------------------*/
+    /*系统分类*/
+
+    //系统分类添加
+/*    void addSystem(@RequestBody Systematics systematics);*/
+
+
+    /*-----------------------------------------------------------------------------------------*/
+    //页面管理
+
+    //页面查询
+    @GetMapping("findYeMian")
+    @ResponseBody
+    List<YeMian> findYeMian();
+
+    @PostMapping("addYeMian")
+    @ResponseBody
+    void addYeMian(@RequestBody YeMian yeMian);
+
+    //删除 模板
+    @DeleteMapping("deleteYeMian")
+    @ResponseBody
+    void deleteYeMian(@RequestParam("id") Integer id);
+
+    @GetMapping("findjingtai")
+    @ResponseBody
+    List<JingTai> findjingtai();
+
+    //删除 模板
+    @DeleteMapping("deleteOne")
+    @ResponseBody
+    void deleteOne(@RequestParam("id")Integer id);
 }

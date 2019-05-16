@@ -11,10 +11,13 @@
 package com.zp.controller.taocan;
 
 import com.zp.model.TaoCan;
+import com.zp.model.yemianguanli.JingTai;
+import com.zp.model.yemianguanli.YeMian;
 import com.zp.service.TcService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -37,7 +40,7 @@ public class TcController {
     @GetMapping("findTaoCan")
     @ResponseBody
     public List<TaoCan> findTaoCan(){
-        System.out.println("-----------------成功进入");
+
         List<TaoCan> list=tcService.findTaoCan();
         return list;
     }
@@ -50,10 +53,10 @@ public class TcController {
     }
 
     //批量删除
-    @DeleteMapping("deleteTaoCan/{ids}")
+    @DeleteMapping("deleteTaoCan/{id}")
     @ResponseBody
-    public void deleteTaoCan(@PathVariable Integer[] ids){
-        tcService.deleteTaoCan(ids);
+    public void deleteTaoCan(@PathVariable Integer id){
+        tcService.deleteTaoCan(id);
     }
 
     //回显
@@ -64,4 +67,57 @@ public class TcController {
         return mer;
     }
 
+
+
+    /*--------------------------------------------------------------------------------------*/
+    //系统分类
+
+
+    /*//添加分类
+    @RequestMapping("addSystem")
+    @ResponseBody
+    public void addSystem(@RequestBody Systematics systematics){
+        tcService.addSystem(systematics);
+    }*/
+
+
+    /*--------------------------------------------------------------------*/
+    //查询页面管理
+    @GetMapping("findYeMian")
+    @ResponseBody
+    public List<YeMian> findYeMian(){
+
+        List<YeMian> list=tcService.findYeMian();
+        return list;
+    }
+
+    //新增
+    @PostMapping("addYeMian")
+    @ResponseBody
+    public void addYeMian(YeMian yeMian){
+        tcService.addYeMian(yeMian);
+    }
+
+    //批量删除
+    @DeleteMapping("deleteYeMian/{id}")
+    @ResponseBody
+    public void deleteYeMian(@PathVariable Integer id){
+        tcService.deleteYeMian(id);
+    }
+
+    //查询页面管理
+    @GetMapping("findjingtai")
+    @ResponseBody
+    public List<JingTai> findjingtai(){
+
+        List<JingTai> list=tcService.findjingtai();
+        return list;
+    }
+
+    //批量删除
+    @DeleteMapping("deleteOne/{id}")
+    @ResponseBody
+    public void deleteOne(@PathVariable Integer id){
+        tcService.deleteOne(id);
+    }
 }

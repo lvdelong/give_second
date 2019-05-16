@@ -11,6 +11,9 @@
 package com.zp.mapper;
 
 import com.zp.model.TaoCan;
+import com.zp.model.yemianguanli.JingTai;
+import com.zp.model.yemianguanli.YeMian;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -30,7 +33,32 @@ public interface TcMapper {
 
     void saveTaoCan(TaoCan taoCan);
 
-    void deleteTaoCan(Integer[] ids);
+    void deleteTaoCan(Integer id);
 
     TaoCan findTaoCanById(Integer id);
+
+
+
+    /*----------------------------------------------------------------------------------*/
+    //系统分类
+
+    //系统分类添加
+    /*void addSystem(Systematics systematics);*/
+
+    /*----------------------------------------------------------------------------------*/
+    //页面管理
+
+    //查询
+    List<YeMian>  findYeMian();
+
+    //新增
+    void addYeMian(YeMian yeMian);
+
+    //删除
+    void deleteYeMian(Integer id);
+
+    //静态页面查询
+    List<JingTai> findjingtai();
+
+    void deleteOne(Integer id);
 }
