@@ -11,6 +11,7 @@
 package com.zp.service;
 
 import com.zp.model.OrderBean;
+import com.zp.model.TaskBean;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,4 +34,24 @@ public interface ApiService {
     @DeleteMapping("deleteOrder/{ids}")
     @ResponseBody
     void deleteOrder(@PathVariable("ids") String[] ids);
+
+    @GetMapping("findTaskLvErGou")
+    @ResponseBody
+    List<TaskBean> findTaskLvErGou();
+
+    @DeleteMapping("deleteTaskLvErGou/{ids}")
+    @ResponseBody
+    void deleteTaskLvErGou(@PathVariable("ids") String[] ids);
+
+    @PostMapping("addTaskLvErGou")
+    @ResponseBody
+    void addTaskLvErGou(@RequestBody TaskBean taskBean);
+
+    @GetMapping("findTaskBeanLvErGou/{tid}")
+    @ResponseBody
+    TaskBean findTaskBeanLvErGou(@PathVariable("tid") String tid);
+
+    @PostMapping("upDateTaskLvErGou")
+    @ResponseBody
+    void upDateTaskLvErGou(@RequestBody TaskBean taskBean);
 }

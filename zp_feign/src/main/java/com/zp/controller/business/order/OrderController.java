@@ -35,16 +35,16 @@ public class OrderController {
     @Autowired
     private ZpFeignService zpFeignService;
 
+    //查询订单信息+条件查询
     @GetMapping("findOrderList")
     @ResponseBody
     public List<OrderBean> findOrderList(@RequestParam("payTheBill") String payTheBill,@RequestParam("applyTime") String applyTime,@RequestParam("status") String status,
                                          @RequestParam("orderType") String orderType,@RequestParam("searchSelect") String searchSelect,@RequestParam("searchxq") String searchxq){
-
         List<OrderBean> orderList = zpFeignService.findOrderList(payTheBill,applyTime,status,orderType,searchSelect,searchxq);
-
         return orderList;
     }
 
+    //批量删除+单删除
     @DeleteMapping("deleteOrder/{ids}")
     @ResponseBody
     public HashMap<String,Object> deleteOrder(@PathVariable("ids") String[] ids){

@@ -12,6 +12,7 @@ package com.zp.mapper.business.order;
 
 
 import com.zp.model.OrderBean;
+import com.zp.model.TaskBean;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -28,5 +29,15 @@ public interface OrderMapper {
 
     List<OrderBean> findOrderList(@Param("orderBean") OrderBean orderBean,@Param("searchSelect")String searchSelect,@Param("searchxq")String searchxq);
 
-    void deleteOrder(@Param("ids") String[] ids);
+    void deleteOrder(@Param("orderIds") String[] ids);
+
+    List<TaskBean> findTaskLvErGou();
+
+    void deleteTaskLvErGou(@Param("taskIds")String[] ids);
+
+    void addTaskLvErGou(TaskBean taskBean);
+
+    TaskBean findTaskBeanLvErGou(String tid);
+
+    void upDateTaskLvErGou(TaskBean taskBean);
 }

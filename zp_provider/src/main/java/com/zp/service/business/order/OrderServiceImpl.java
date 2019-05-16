@@ -12,6 +12,7 @@ package com.zp.service.business.order;
 
 import com.zp.mapper.business.order.OrderMapper;
 import com.zp.model.OrderBean;
+import com.zp.model.TaskBean;
 import com.zp.service.ApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,6 +34,7 @@ public class OrderServiceImpl implements ApiService {
     @Autowired
     private OrderMapper orderMapper;
 
+    //条件查询
     @Override
     public List<OrderBean> findOrderList(String payTheBill, String applyTime,String status,String orderType, String searchSelect,String searchxq) {
         OrderBean orderBean = new OrderBean();
@@ -43,8 +45,39 @@ public class OrderServiceImpl implements ApiService {
         return orderMapper.findOrderList(orderBean,searchSelect, searchxq);
     }
 
+    //批量删除
     @Override
     public void deleteOrder(String[] ids) {
         orderMapper.deleteOrder(ids);
+    }
+
+    //任务列表查询
+    @Override
+    public List<TaskBean> findTaskLvErGou() {
+        List<TaskBean> taskList=orderMapper.findTaskLvErGou();
+        return taskList;
+    }
+
+    @Override
+    public void deleteTaskLvErGou(String[] ids) {
+        orderMapper.deleteTaskLvErGou(ids);
+    }
+
+    @Override
+    public void addTaskLvErGou(TaskBean taskBean) {
+        taskBean.setTaskType("内置");
+        orderMapper.addTaskLvErGou(taskBean);
+    }
+
+    @Override
+    public TaskBean findTaskBeanLvErGou(String tid) {
+        TaskBean taskBean=orderMapper.findTaskBeanLvErGou(tid);
+        return taskBean;
+    }
+
+    @Override
+    public void upDateTaskLvErGou(TaskBean taskBean) {
+        taskBean.setTaskType("内置");
+        orderMapper.upDateTaskLvErGou(taskBean);
     }
 }
