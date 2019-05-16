@@ -37,18 +37,22 @@ public class OrderController {
 
     @GetMapping("findOrderList")
     @ResponseBody
-    public List<OrderBean> findOrderList(){
-        List<OrderBean> orderList = zpFeignService.findOrderList();
+    public List<OrderBean> findOrderList(@RequestParam("payTheBill") String payTheBill,@RequestParam("applyTime") String applyTime,@RequestParam("status") String status,
+                                         @RequestParam("orderType") String orderType,@RequestParam("searchSelect") String searchSelect,@RequestParam("searchxq") String searchxq){
+
+        List<OrderBean> orderList = zpFeignService.findOrderList(payTheBill,applyTime,status,orderType,searchSelect,searchxq);
+
         return orderList;
     }
 
-    @DeleteMapping("deleteOrder/{id}")
+    @DeleteMapping("deleteOrder/{ids}")
     @ResponseBody
-    public HashMap<String,Object> deleteOrder(@PathVariable("id") String id){
+    public HashMap<String,Object> deleteOrder(@PathVariable("ids") String[] ids){
            HashMap<String, Object> result = new HashMap<>();
 
         try {
-            zpFeignService.deleteOrder(id);
+
+           zpFeignService.deleteOrder(ids);
 
             result.put("status",true);
             return result;

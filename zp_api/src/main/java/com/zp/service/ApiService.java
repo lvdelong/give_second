@@ -11,10 +11,7 @@
 package com.zp.service;
 
 import com.zp.model.OrderBean;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,9 +28,9 @@ public interface ApiService {
 
     @GetMapping("findOrderList")
     @ResponseBody
-    List<OrderBean> findOrderList();
+    List<OrderBean> findOrderList(@RequestParam("payTheBill") String payTheBill, @RequestParam("applyTime") String applyTime, @RequestParam("status") String status,@RequestParam("orderType") String orderType,@RequestParam("searchSelect") String searchSelect,@RequestParam("searchxq")String searchxq);
 
-    @DeleteMapping("deleteOrder/{id}")
+    @DeleteMapping("deleteOrder/{ids}")
     @ResponseBody
-    void deleteOrder(@PathVariable("id") String id);
+    void deleteOrder(@PathVariable("ids") String[] ids);
 }

@@ -15,6 +15,7 @@ import com.zp.model.OrderBean;
 import com.zp.service.ApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -33,12 +34,17 @@ public class OrderServiceImpl implements ApiService {
     private OrderMapper orderMapper;
 
     @Override
-    public List<OrderBean> findOrderList() {
-        return orderMapper.findOrderList();
+    public List<OrderBean> findOrderList(String payTheBill, String applyTime,String status,String orderType, String searchSelect,String searchxq) {
+        OrderBean orderBean = new OrderBean();
+        orderBean.setPayTheBill(payTheBill);
+        orderBean.setApplyTime(applyTime);
+        orderBean.setStatus(status);
+        orderBean.setOrderType(orderType);
+        return orderMapper.findOrderList(orderBean,searchSelect, searchxq);
     }
 
     @Override
-    public void deleteOrder(String id) {
-        orderMapper.deleteOrder(id);
+    public void deleteOrder(String[] ids) {
+        orderMapper.deleteOrder(ids);
     }
 }

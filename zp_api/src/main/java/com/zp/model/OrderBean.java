@@ -10,6 +10,8 @@
  */
 package com.zp.model;
 
+import java.util.Date;
+
 /**
  * 〈一句话功能简述〉<br> 
  * 〈〉
@@ -37,6 +39,13 @@ public class OrderBean {
     private String payTheBill;//付账方式
 
     private Boolean checkeds=false;
+
+    private Date  curData;
+
+    private String status;
+
+    private String orderType;
+
 
     public String getId() {
         return id;
@@ -110,17 +119,45 @@ public class OrderBean {
         this.checkeds = checkeds;
     }
 
+    public Date getCurData() {
+        return curData;
+    }
+
+    public void setCurData(Date curData) {
+        this.curData = curData;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getOrderType() {
+        return orderType;
+    }
+
+    public void setOrderType(String orderType) {
+        this.orderType = orderType;
+    }
+
     @Override
     public String toString() {
         return "OrderBean{" +
                 "id='" + id + '\'' +
-                ", orderPrice='" + orderPrice + '\'' +
+                ", orderPrice=" + orderPrice +
                 ", firmName='" + firmName + '\'' +
                 ", orderInfo='" + orderInfo + '\'' +
                 ", orderNumber='" + orderNumber + '\'' +
                 ", applyVip='" + applyVip + '\'' +
                 ", applyTime='" + applyTime + '\'' +
                 ", payTheBill='" + payTheBill + '\'' +
+                ", checkeds=" + checkeds +
+                ", curData=" + curData +
+                ", status='" + status + '\'' +
+                ", orderType='" + orderType + '\'' +
                 '}';
     }
 }
