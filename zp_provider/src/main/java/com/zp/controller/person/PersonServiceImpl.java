@@ -45,6 +45,7 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
+    @ResponseBody
     public List<PersonBean> queryPerson() {
         return personMapper.queryPerson();
     }

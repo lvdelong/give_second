@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -79,5 +80,23 @@ public class OrderServiceImpl implements ApiService {
     public void upDateTaskLvErGou(TaskBean taskBean) {
         taskBean.setTaskType("内置");
         orderMapper.upDateTaskLvErGou(taskBean);
+    }
+
+    @Override
+    public HashMap<String,Object> findOrderCountLvErGou() {
+        HashMap<String,Object> count=new HashMap<>();
+
+        //完成订单
+        int complete=orderMapper.findOrderCompleteCountLvErGou();
+        count.put("complete",complete);
+
+        //待付款订单
+        int awaits=orderMapper.findOrderAwaitsCountLvErGou();
+        count.put("await",awaits);
+
+        //未完成订单
+        int cancels=orderMapper.findOrderCancelsCountLvErGou();
+        count.put("cancel",cancels);
+        return count;
     }
 }

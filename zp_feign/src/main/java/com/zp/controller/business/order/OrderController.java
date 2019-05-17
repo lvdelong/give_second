@@ -44,6 +44,16 @@ public class OrderController {
         return orderList;
     }
 
+
+
+    //订单状态数量
+    @GetMapping("findOrderCountLvErGou")
+    @ResponseBody
+    public HashMap<String,Object> findOrderCountLvErGou(){
+        HashMap<String,Object> count=zpFeignService.findOrderCountLvErGou();
+        return count;
+    }
+
     //批量删除+单删除
     @DeleteMapping("deleteOrder/{ids}")
     @ResponseBody

@@ -15,6 +15,7 @@ import com.zp.model.OrderBean;
 import com.zp.model.TaskBean;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -40,4 +41,10 @@ public interface OrderMapper {
     TaskBean findTaskBeanLvErGou(String tid);
 
     void upDateTaskLvErGou(TaskBean taskBean);
+
+    int findOrderCompleteCountLvErGou();
+    
+    int findOrderAwaitsCountLvErGou();
+
+    int findOrderCancelsCountLvErGou();
 }

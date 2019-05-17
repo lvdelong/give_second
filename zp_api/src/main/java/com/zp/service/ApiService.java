@@ -14,6 +14,7 @@ import com.zp.model.OrderBean;
 import com.zp.model.TaskBean;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -54,4 +55,9 @@ public interface ApiService {
     @PostMapping("upDateTaskLvErGou")
     @ResponseBody
     void upDateTaskLvErGou(@RequestBody TaskBean taskBean);
+
+    //订单完成数量
+    @GetMapping("findOrderCountLvErGou")
+    @ResponseBody
+    HashMap<String,Object> findOrderCountLvErGou();
 }

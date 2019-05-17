@@ -13,6 +13,28 @@
         <include refid="orderWhere"></include>
     </select>
 
+    <!--查询完成订单条数-->
+    <select id="findOrderCompleteCountLvErGou" resultType="int">
+        select count(*) from t_order t
+          left join t_orderstatus ts on ts.id=t.status
+            where t.status=1
+    </select>
+
+    <!--查询待付订单条数-->
+    <select id="findOrderAwaitsCountLvErGou" resultType="int">
+        select count(*) from t_order t
+          left join t_orderstatus ts on ts.id=t.status
+            where t.status=3
+    </select>
+
+    <!--查询未完成订单条数-->
+    <select id="findOrderCancelsCountLvErGou" resultType="int">
+        select count(*) from t_order t
+          left join t_orderstatus ts on ts.id=t.status
+            where t.status=2
+    </select>
+
+
     <!--取消订单-->
     <delete id="deleteOrder" parameterType="string" >
         delete from t_order  where id in
